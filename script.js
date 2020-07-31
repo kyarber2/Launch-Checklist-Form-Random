@@ -28,12 +28,6 @@ window.addEventListener("load", function(){
       form.addEventListener("submit", function(event){
          event.preventDefault();
 
-      /* This block of code shows how to format the HTML once you fetch some planetary JSON!
-<h2>Mission Destination</h2>
-<ol>
-   <li>Name: ${}</li>
-  
-*/
 
       let pilotNameInput = document.querySelector("input[name=pilotName]");
       let copilotNameInput = document.querySelector("input[name=copilotName]");
@@ -62,23 +56,31 @@ window.addEventListener("load", function(){
 
        pilotName.innerHTML = `${pilotNameInput.value} ready!`;
        copilotName.innerHTML = `${copilotNameInput.value} ready!`;
-       
+       //make if else statements for 
+       // fuel go, cargo go
+       //fuel go, cargo no--done
+       //fuel no, cargo go--done
+       //fuel no, cargo no-done
        if(fuelLevelInput.value < 10000 && cargoMassInput.value > 10000){
           launchStatus.style.color = "red";
           launchStatus.innerHTML = "Shuttle not ready for launch.";
           fuelStatus.innerHTML = "Not enough fuel for launch.";
           cargoStatus.innerHTML = "Too much mass for the shuttle to take off.";
-       }else if(cargoMassInput.value > 10000){
+       } else if(fuelLevelInput.value > 10000 && cargoMassInput.value > 10000){
          launchStatus.style.color = "red";
          launchStatus.innerHTML = "Shuttle not ready for launch.";
+         fuelStatus.innerHTML = "Sufficient fuel for launch!"
          cargoStatus.innerHTML = "Too much mass for the shuttle to take off.";
-       } else if(fuelLevelInput.value < 10000){
+       } else if(fuelLevelInput.value < 10000 && cargoMassInput.value < 10000){
          launchStatus.style.color = "red";
          launchStatus.innerHTML = "Shuttle not ready for launch.";
          fuelStatus.innerHTML = "Not enough fuel for launch.";
-      } else{
+         cargoStatus.innerHTML = "Cargo mass low enough for launch.";
+       } else if (fuelLevelInput.value > 10000 && cargoMassInput.value < 10000){
          launchStatus.style.color = "green";
          launchStatus.innerHTML = "Shuttle ready for launch!";
+         fuelStatus.innerHTML = "Sufficient fuel for launch!";
+         cargoStatus.innerHTML = "Cargo mass low enough for launch.";
       }
    })
 });
